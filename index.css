@@ -156,6 +156,13 @@ background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, F
     padding-left: 5px;
     transition: 0.43s;
 }
+#total_ressult{
+  margin-top: 20px;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 600;
+  padding: 0px 15px;
+}
 .lds-roller {
     /* display: inline-block; */
     display: none;

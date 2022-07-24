@@ -11,6 +11,10 @@ details_btn.addEventListener("click",()=>{
 let pincode=document.getElementById("pincode");
 pincode.addEventListener("input",()=>{
     document.getElementById("error_para").style.display='none';
+    if(pincode.value.length>=6){
+        let newvalue=pincode.value.slice(0,6);
+         pincode.value=newvalue
+     }
 })
 let searchbtn=document.getElementById("search_btn_box");
 let spinner=document.querySelector('.lds-roller');
@@ -32,6 +36,18 @@ searchbtn.addEventListener("click",function(){
                     spinner.style.display='none';
                     let data=JSON.parse(this.responseText);
                     let main_data=data[0].PostOffice;
+                    let result_para=document.getElementById('total_ressult');
+                     if(main_data==null){
+                        result_para.innerHTML=` Sorry! , There is no result present in this pincode`
+                        if(result_para.innerText.includes('Sorry!')){
+                            console.log('ok');
+                            card_box.innerHTML='';
+                        }
+                    }
+                    if(main_data.length>=1){
+                        result_para.innerHTML=`Total Result present ${main_data.length}`
+                    }
+                   
                     for (key in main_data){
                         str+=`<div class="card" id="card_box">
                         <ul class="list-group list-group-flush">
@@ -50,8 +66,6 @@ searchbtn.addEventListener("click",function(){
                 let xx=document.getElementById("details_card_box");
                 // xx.childNodes[0].style.display='none';
                 xx.childNodes[0].textContent=''
-                console.log(xx.childNodes[0]);
-                                
             }
                 else{
                     console.log(this.status);
@@ -69,3 +83,4 @@ searchbtn.addEventListener("click",function(){
         document.getElementById("search_btn_box").click();
     }
 });
+
